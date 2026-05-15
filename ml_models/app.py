@@ -18,7 +18,7 @@ def prepare_data(sales_data):
     Converts raw order data into a monthly time-series for training.
     """
     if not sales_data:
-        return None
+        return pd.DataFrame()
     
     # Convert to DataFrame
     df = pd.DataFrame(sales_data)
@@ -57,7 +57,7 @@ def predict_sales():
         monthly_df = prepare_data(sales_data)
         
         # If we have only one month, analyze daily trend within that month
-        if len(monthly_df) < 2:
+        if monthly_df is None or monthly_df.empty or len(monthly_df) < 2:
             df = pd.DataFrame(sales_data)
             df['orderDate'] = pd.to_datetime(df['orderDate'])
             # Group by day index
