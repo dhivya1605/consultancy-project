@@ -16,7 +16,7 @@ const ProductDetail = () => {
 
   const fetchProductDetail = React.useCallback(async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL/api}/products/${id}`);
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/products/${id}`);
       const data = await response.json();
       setProduct(data);
     } catch (error) {
