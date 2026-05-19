@@ -73,7 +73,7 @@ const SimulatedPayment = () => {
     setError('');
     try {
       await axios.post(
-        'http://localhost:5000/api/orders/payment/simulate',
+        `${process.env.REACT_APP_API_URL}/api/orders/payment/simulate`,
         { orderId: order._id },
         { headers: { Authorization: `Bearer ${token}` } }
       );

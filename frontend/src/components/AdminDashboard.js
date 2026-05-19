@@ -17,7 +17,7 @@ const AdminDashboard = () => {
       products.map(async (product) => {
         if (!product.name) {
           try {
-            const response = await axios.get(`http://localhost:5000/api/products/${product.id}`);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/products/${product.id}`);
             return { ...product, name: response.data.title };
           } catch (error) {
             console.error(`Failed to fetch product name for ID: ${product.id}`, error);
@@ -43,13 +43,13 @@ const AdminDashboard = () => {
 
   const fetchData = async () => {
     try {
-      const salesRes = await axios.get('http://localhost:5000/api/admin/sales-report', {
+      const salesRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/admin/sales-report`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const updatedTopSellingProducts = await fetchProductNames(salesRes.data.topSellingProducts);
       setSalesData({ ...salesRes.data, topSellingProducts: updatedTopSellingProducts });
 
-      const usersRes = await axios.get('http://localhost:5000/api/admin/users', {
+      const usersRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/admin/users`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUsers(usersRes.data);

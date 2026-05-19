@@ -85,7 +85,7 @@ const ProductList = () => {
     // If image starts with http, it's already a full URL
     if (image.startsWith('http')) return image;
     // Otherwise, construct full backend URL
-    return `http://localhost:5000${image}`;
+    return `${process.env.REACT_APP_API_URL}${image}`;
   };
 
   return (

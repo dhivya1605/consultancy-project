@@ -18,7 +18,7 @@ const RatingModal = ({ orderId, productId, onClose, onSubmit }) => {
 
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/ratings/submit', {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/ratings/submit`, {
         orderId,
         productId,
         rating,

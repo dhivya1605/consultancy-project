@@ -71,7 +71,7 @@ const Checkout = () => {
     setLoading(true);
     try {
       const orderData = { deliveryAddress, phoneNumber, paymentMethod };
-      const response = await axios.post('http://localhost:5000/api/orders', orderData, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/orders`, orderData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const createdOrder = response.data.order;
@@ -229,7 +229,7 @@ const Checkout = () => {
                   const getImageUrl = (img) => {
                     if (!img) return null;
                     if (img.startsWith('http')) return img;
-                    return `http://localhost:5000${img}`;
+                    return `${process.env.REACT_APP_API_URL}${img}`;
                   };
 
                   return (

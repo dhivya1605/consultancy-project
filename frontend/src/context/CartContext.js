@@ -13,7 +13,7 @@ export const CartProvider = ({ children }) => {
     if (!token) return;
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/api/cart', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/cart`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setCart(response.data);
@@ -28,7 +28,7 @@ export const CartProvider = ({ children }) => {
     setLoading(true);
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/cart',
+        `${process.env.REACT_APP_API_URL}/api/cart`,
         { productId, quantity, price },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -45,7 +45,7 @@ export const CartProvider = ({ children }) => {
     setLoading(true);
     try {
       const response = await axios.delete(
-        'http://localhost:5000/api/cart/item',
+        `${process.env.REACT_APP_API_URL}/api/cart/item`,
         {
           headers: { Authorization: `Bearer ${token}` },
           data: { productId }
@@ -64,7 +64,7 @@ export const CartProvider = ({ children }) => {
     setLoading(true);
     try {
       const response = await axios.put(
-        'http://localhost:5000/api/cart',
+        `${process.env.REACT_APP_API_URL}/api/cart`,
         { productId, quantity },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -81,7 +81,7 @@ export const CartProvider = ({ children }) => {
     setLoading(true);
     try {
       const response = await axios.delete(
-        'http://localhost:5000/api/cart',
+        `${process.env.REACT_APP_API_URL}/api/cart`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setCart(response.data.cart);

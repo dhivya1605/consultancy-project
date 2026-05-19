@@ -104,7 +104,7 @@ const OrderConfirmation = () => {
             const getImageUrl = (img) => {
               if (!img) return null;
               if (img.startsWith('http')) return img;
-              return `http://localhost:5000${img}`;
+              return `${process.env.REACT_APP_API_URL}${img}`;
             };
 
             return (

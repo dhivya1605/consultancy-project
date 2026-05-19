@@ -93,7 +93,7 @@ const ProductDetail = () => {
       <div className="product-detail">
         <div className="detail-image">
           <img 
-            src={product.image?.startsWith('http') ? product.image : `http://localhost:5000${product.image}`} 
+            src={product.image?.startsWith('http') ? product.image : `${process.env.REACT_APP_API_URL}${product.image}`} 
             alt={product.title}
             onError={(e) => {
               e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400"%3E%3Crect fill="%23ddd" width="400" height="400"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23999" font-size="20"%3ENo Image%3C/text%3E%3C/svg%3E';

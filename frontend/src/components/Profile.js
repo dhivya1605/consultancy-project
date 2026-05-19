@@ -44,7 +44,7 @@ const Profile = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/orders', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/orders`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setOrders(Array.isArray(response.data) ? response.data : []);
@@ -63,12 +63,12 @@ const Profile = () => {
     if (!window.confirm('Are you sure you want to cancel this order? Item stock will be restored.')) return;
 
     try {
-      const response = await axios.post('http://localhost:5000/api/orders/cancel', { orderId }, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/orders/cancel`, { orderId }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert(response.data.message);
       // Refresh orders
-      const updated = await axios.get('http://localhost:5000/api/orders', {
+      const updated = await axios.get(`${process.env.REACT_APP_API_URL}/api/orders`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setOrders(updated.data);
