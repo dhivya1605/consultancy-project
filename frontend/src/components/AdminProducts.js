@@ -62,15 +62,21 @@ const AdminProducts = () => {
   const fetchProducts = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await apiCall.get('/products', {
-        headers: { Authorization: `Bearer ${token}` },
-        params: { admin: true }
+      console.log('Fetching products with token:', token);
+      const res = await apiCall.get('/products?admin=true', {
+        headers: { Authorization: `Bearer ${token}` }
       });
+      console.log('Products response:', res.data);
       const raw = res.data.products || [];
       const unique = Array.from(new Map(raw.map(p => [p._id, p])).values());
+      console.log('Unique products:', unique);
       setProducts(unique);
     } catch (err) {
       console.error('Error fetching products', err);
+      if (err.response) {
+        console.error('Response status:', err.response.status);
+        console.error('Response data:', err.response.data);
+      }
     } finally {
       setLoading(false);
     }
