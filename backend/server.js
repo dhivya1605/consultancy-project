@@ -9,7 +9,7 @@ const app = express();
 // Middleware
 const corsOptions = {
   origin: [
-    'https://consultancy-project.vercel.app',
+    'https://consultancy-project-peach.vercel.app',
     'https://consultancy-project-4.onrender.com',
     'http://localhost:3000',
     'http://localhost:5000'
