@@ -43,7 +43,8 @@ export const AuthProvider = ({ children }) => {
       setUser(response.data.user);
       return response.data;
     } catch (error) {
-      throw error.response?.data || error;
+      console.error('Registration error:', error.response?.data || error);
+      throw error.response?.data || { message: error.message || 'Network error' };
     } finally {
       setLoading(false);
     }
@@ -60,7 +61,8 @@ export const AuthProvider = ({ children }) => {
       setUser(response.data.user);
       return response.data;
     } catch (error) {
-      throw error.response?.data || error;
+      console.error('Login error:', error.response?.data || error);
+      throw error.response?.data || { message: error.message || 'Network error' };
     } finally {
       setLoading(false);
     }

@@ -39,7 +39,9 @@ const LoginRegister = () => {
         navigate('/');
       }
     } catch (err) {
-      setError(err.message || 'An error occurred');
+      console.error('Auth error:', err);
+      const errorMsg = err.response?.data?.message || err.message || 'An error occurred';
+      setError(errorMsg);
     } finally {
       setLoading(false);
     }
